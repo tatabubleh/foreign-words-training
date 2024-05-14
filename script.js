@@ -4,6 +4,7 @@ const sliderControls = document.querySelector(".slider-controls");
 
 document.addEventListener("DOMContentLoaded", function () {
   const currentWords = document.getElementById("current-word");
+  const buttonNext = document.getElementById("next");
   const buttonBack = document.getElementById("back");
   const buttonExam = document.getElementById("exam");
   const studyMode = document.getElementById("study-mode");
