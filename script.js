@@ -1,3 +1,4 @@
+"use strict";
 const hidden = document.querySelector(".hidden");
 const sidebars = document.querySelector(".sidebar");
 const sliderControls = document.querySelector(".slider-controls");
@@ -43,6 +44,11 @@ document.addEventListener("DOMContentLoaded", function () {
       translation: "Отец",
       example: "Родитель мужкого пола",
     },
+    {
+        foreignWord: "Table",
+        translation: "Стол",
+        example: "Предмет мебели",
+      },
   ];
 
   let firstCard;
@@ -162,8 +168,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   flipCardFronts.forEach((front) => {
     front.addEventListener("click", function () {
-      if (!front.classList.contains("selected")) {
-        front.classList.add("selected");
+      if (!thist.classList.contains("selected")) {
+        this.classList.add("selected");
         checkPairs();
       }
     });
@@ -171,8 +177,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   flipCardBacks.forEach((back) => {
     back.addEventListener("click", function () {
-      if (!back.classList.contains("selected")) {
-        back.classList.add("selected");
+      if (!this.classList.contains("selected")) {
+        this.classList.add("selected");
         checkPairs();
       }
     });
