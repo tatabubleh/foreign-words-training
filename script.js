@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentWordIndex = 0;
   const maxWordIndex = words.length - 1;
 
-  var trainWords = [];
+  let trainWords = [];
 
   function updateCurrentWord() {
     const currentWord = words[currentWordIndex];
@@ -112,8 +112,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function check(clickedCard, index) {
-    if (currentWordIndex != -1) {
-      if (currentWordIndex == index) {
+    if (currentWordIndex !== -1) {
+      if (currentWordIndex === index) {
+        if (!clickedCard.classList.contains("correct") && !clickedCard.classList.contains("fade-out")) {
         clickedCard.classList.add("correct");
         const correctCards =
           clickedCard.parentElement.querySelectorAll(".correct");
@@ -122,12 +123,14 @@ document.addEventListener("DOMContentLoaded", function () {
         firstCard = null;
         const leftCards =
           clickedCard.parentElement.querySelectorAll(":not(.fade-out)");
-        if (leftCards.length == 0) {
+        if (leftCards.length === 0) {
           setTimeout(() => {
             alert("Поздравляем! Вы успешно завершили проверку знаний.");
           }, 500);
         }
+      }
       } else {
+        if (!clickedCard.classList.contains("correct") && !clickedCard.classList.contains("fade-out")) {
         clickedCard.classList.add("wrong");
         setTimeout(() => {
           clickedCard.classList.remove("wrong");
@@ -136,15 +139,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 500);
         currentWordIndex = -1;
       }
+    }
     } else {
+      if (!clickedCard.classList.contains("fade-out")) {
       firstCard = clickedCard;
       currentWordIndex = index;
       clickedCard.classList.add("correct");
     }
   }
+  }
 
   function generateRandomTrainCards(count) {
-    var cards = [];
+    let cards = [];
     const shuffled = words.sort(() => 0.5 - Math.random());
     trainWords = shuffled.slice(0, count);
     trainWords.forEach((word, index) => {
@@ -168,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   flipCardFronts.forEach((front) => {
     front.addEventListener("click", function () {
-      if (!thist.classList.contains("selected")) {
+      if (!this.classList.contains("selected")) {
         this.classList.add("selected");
         checkPairs();
       }
